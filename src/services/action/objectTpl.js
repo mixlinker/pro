@@ -1,0 +1,77 @@
+export default {
+    get_object_tpl_list: { "block_mapping": "template", "action": "get_object_template_list" },
+    get_object_tpl_detail: { "block_mapping": "template", "action": "get_object_template_item" },
+    create_object_template: { "block_mapping": "template", "action": "create_object_template" },
+    update_object_template: { "block_mapping": "template", "action": "update_object_template" },
+    delete_object_template: { "block_mapping": "template", "action": "delete_object_template" },
+    // 统计模板
+    get_statistics_template_list: { "block_mapping": "template", "action": "get_statistics_template_list" },
+    get_statistics_template_item: { "block_mapping": "template", "action": "get_statistics_template_item" },
+    create_statistics_template: { "block_mapping": "template", "action": "create_statistics_template" },
+    update_statistics_template: { "block_mapping": "template", "action": "update_statistics_template" },
+    delete_statistics_template: { "block_mapping": "template", "action": "delete_statistics_template" },
+    // 计算模板
+    get_calculate_template_list: { "block_mapping": "template", "action": "get_calculate_template_list" },
+    get_calculate_template_item: { "block_mapping": "template", "action": "get_calculate_template_item" },
+    create_calculate_template: { "block_mapping": "template", "action": "create_calculate_template" },
+    update_calculate_template: { "block_mapping": "template", "action": "update_calculate_template" },
+    delete_calculate_template: { "block_mapping": "template", "action": "delete_calculate_template" },
+    // 控制码模板
+    get_control_template_item: { "block_mapping": "template", "action": "get_control_template_item" },
+    create_control_template: { "block_mapping": "template", "action": "create_control_template" },
+    update_control_template: { "block_mapping": "template", "action": "update_control_template" },
+    delete_control_template: { "block_mapping": "template", "action": "delete_control_template" },
+    // 映射表模板
+    get_mapping_template_item: { "block_mapping": "template", "action": "get_mapping_template_item" },
+    create_mapping_template: { "block_mapping": "template", "action": "create_mapping_template" },
+    update_mapping_template: { "block_mapping": "template", "action": "update_mapping_template" },
+    delete_mapping_template: { "block_mapping": "template", "action": "delete_mapping_template" },
+    // 离线模板
+    get_collect_template_list: { "block_mapping": "template", "action": "get_collect_template_list" },
+    get_collect_template_item: { "block_mapping": "template", "action": "get_collect_template_item" },
+    create_collect_template: { "block_mapping": "template", "action": "create_collect_template" },
+    update_collect_template: { "block_mapping": "template", "action": "update_collect_template" },
+    delete_collect_template: { "block_mapping": "template", "action": "delete_collect_template" },
+    // 历程模板
+    get_retainer_template_list: { "block_mapping": "template", "action": "get_retainer_template_list" },
+    get_retainer_template_item: { "block_mapping": "template", "action": "get_retainer_template_item" },
+    create_retainer_template: { "block_mapping": "template", "action": "create_retainer_template" },
+    update_retainer_template: { "block_mapping": "template", "action": "update_retainer_template" },
+    delete_retainer_template: { "block_mapping": "template", "action": "delete_retainer_template" },
+    // 显示板模板
+    get_dashboard_template_list: { "block_mapping": "template", "action": "get_dashboard_template_list" },
+    get_dashboard_template_item: { "block_mapping": "template", "action": "get_dashboard_template_item" },
+    create_dashboard_template: { "block_mapping": "template", "action": "create_dashboard_template" },
+    update_dashboard_template: { "block_mapping": "template", "action": "update_dashboard_template" },
+    delete_dashboard_template: { "block_mapping": "template", "action": "delete_dashboard_template" },
+    // 报表模板
+    get_report_template_list: { "block_mapping": "template", "action": "get_report_template_list" },
+    get_report_template_item: { "block_mapping": "template", "action": "get_report_template_item" },
+    create_report_template: { "block_mapping": "template", "action": "create_report_template" },
+    update_report_template: { "block_mapping": "template", "action": "update_report_template" },
+    delete_report_template: { "block_mapping": "template", "action": "delete_report_template" },
+    //关联对象
+    get_object_list_object_template: { "block_mapping": "template", "action": "get_instance_list_by_object_template" },
+    copy_object_template: { "block_mapping": "template", "action": "copy_object_template" },
+    //同步配置
+    get_template_update_mapping: { "block_mapping": "template", "action": "get_template_update_mapping" },
+    reload_instance_by_template: { "block_mapping": "template", "action": "reload_instance_by_template" },
+    reload_instance: { "block_mapping": "template", "action": "reload_instance" },
+    //统计过滤/条件模板
+    create_filter_template: { "block_mapping": "template", "action": "create_filter_template" },
+    update_filter_template: { "block_mapping": "template", "action": "update_filter_template" },
+    delete_filter_template: { "block_mapping": "template", "action": "delete_filter_template" },
+    get_filter_template_item: { "block_mapping": "template", "action": "get_filter_template_item" },
+    get_filter_template_list: { "block_mapping": "template", "action": "get_filter_template_list" },
+    create_condition_template: { "block_mapping": "template", "action": "create_condition_template" },
+    update_condition_template: { "block_mapping": "template", "action": "update_condition_template" },
+    delete_condition_template: { "block_mapping": "template", "action": "delete_condition_template" },
+    get_condition_template_item: { "block_mapping": "template", "action": "get_condition_template_item" },
+    get_condition_template_list: { "block_mapping": "template", "action": "get_condition_template_list" },
+    //indass模板
+    create_indass_template: { "block_mapping": "template", "action": "create_indass_template" },
+    update_indass_template: { "block_mapping": "template", "action": "update_indass_template" },
+    delete_indass_template: { "block_mapping": "template", "action": "delete_indass_template" },
+    get_indass_template_item: { "block_mapping": "template", "action": "get_indass_template_item" },
+    get_indass_template_list: { "block_mapping": "template", "action": "get_indass_template_list" },
+}

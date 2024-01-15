@@ -1,0 +1,20 @@
+stages:
+  - npm
+
+npm-install:
+  stage: npm
+  script:
+    - node -v
+    - npm version
+    - if [ ${CI_COMMIT_TAG} ] ;then sed -i 's/version.*/version=\"'${CI_COMMIT_TAG}'\"/g' static/Version.ini; fi
+    - if [ ${CI_COMMIT_TAG} ] ;then sed -i 's/release.*/release=\"'${DATE}'\"/g' static/Version.ini; fi
+    - cnpm install && cnpm run build
+  tags:
+      - v8-runner
+  only:
+    refs:
+      - tags
+  artifacts:
+    paths:
+      - dist/
+    expire_in: 10 hour

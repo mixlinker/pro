@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>设备监控</title>
+</head>
+<body>
+  <div id="app"></div>
+  <script type="module" src="/src/main.js"></script>
+  <script>
+    //采用引入百度Map3.0版本
+    //让百度地图支持https请求
+    const protocolStr = document.location.protocol // 返回当前浏览器 URL 的协议
+    switch (protocolStr) {
+      case 'https:':
+        // 指定https访问类型，具体见百度地图API加载方式：http://www.jiazhengblog.com/blog/2011/06/28/284/
+        window.HOST_TYPE = '2'
+        break
+      default:
+        break
+    }
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "//api.map.baidu.com/getscript?v=3.0&ak=8haOo8aFgfas3EWFbFG7MHBI8GbLFvYc";
+    document.body.appendChild(script);
+    let script2 = document.createElement("script")
+    script2.type = "text/javascript";
+    script2.src = `${protocolStr}//api.map.baidu.com/library/TextIconOverlay/1.2/src/TextIconOverlay_min.js`;
+    let script3 = document.createElement("script")
+    script3.type = "text/javascript";
+    script3.src = `${protocolStr}//api.map.baidu.com/library/MarkerClusterer/1.2/src/MarkerClusterer_min.js`;
+    //百度api加载完成后再加载剩余两个百度js
+    script.onload = () => {
+      document.body.appendChild(script2);
+      document.body.appendChild(script3);
+    }
+
+
+  </script>
+</body>
+</html>

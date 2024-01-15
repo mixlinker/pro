@@ -1,0 +1,175 @@
+.left {
+    background-color: #ffffff;
+    width: 300px;
+    height: 100%;
+    padding: 8px;
+    .search-content {
+        padding: 8px;
+        align-items: center;
+        justify-items: center;
+    }
+    .left-list {
+        height: calc(100% - 116px);
+        padding: 8px;
+        overflow-y: scroll;
+        .active {
+            background: #dfe6f3;
+        }
+        .item-wrap {
+            flex: 1;
+            padding: 0 16px;
+            cursor: pointer;
+            max-height: 64px;
+            border-radius: 4px;
+            border-bottom: 1px solid #efefef;
+            .left-wrap {
+                width: 100%;
+                display: flex;
+                .leftContent {
+                    width: 200px;
+                    height: 100%;
+                    .name {
+                        width: 100%;
+                        margin-top: 12px;
+                        float: left;
+                        font-size: 14px;
+                        color: #000;
+                    }
+                    .gre {
+                        float: left;
+                        font-size: 12px;
+                        color: rgba(0, 0, 0, 0.45);
+                        .greData {
+                            color: #1F7BFC;
+                        }
+                    }
+                }
+                .rightContent {
+                    display: flex;
+                    flex: 1;
+                    height: 100%;
+                    position: relative;
+                    .status {
+                        float: right;
+                        text-align: center;
+                        font-size: 12px;
+                        width: 40px;
+                        color: #67cdad;
+                        border-style: solid;
+                        border-width: 1px;
+                        border-radius: 2px;
+                        left: 100%;
+                        top: 50%;
+                        transform: translate(-100%,-50%);
+                        position: absolute;
+                    }
+                }
+            }
+        }
+    }
+    .pagination-wrap {
+        width: 100%;
+        height: 40px;
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+p {
+    float: left;
+    // font-size: 12px;
+    margin-bottom: 0;
+}
+.right {
+    margin-left: 315px;
+    height: 100%;
+    flex: 1;
+    margin-left:16px;
+    .right-top {
+        height: 50%;
+        display: flex;
+        .right-top-left {
+            background-color: #ffffff;
+            height: 100%;
+            width: 40%;
+            float: left;
+            .square {
+                width: 100%;
+                height: calc(100% - 35px);
+            }
+        }
+        .right-top-right {
+            background-color: #ffffff;
+            height: 100%;
+            width: calc(100% - 40% - 15px);
+            margin-left: 15px;
+            float: left;
+            .line-gasHour {
+                width: 100%;
+                height: calc(100% - 35px);
+            }
+        }
+    }
+    .right-bottom {
+        background-color: #ffffff;
+        margin-top: 15px;
+        height: 49%;
+        .bar-gasDay {
+            width: 100%;
+            height: calc(100% - 35px);
+        }
+    }
+}
+
+.title {
+    padding-top: 10px;
+    height: 35px;
+    width: 100%;
+    .icon {
+        width: 4px;
+        height: 22px;
+        margin-left: 15px;
+        background: #40a9ff;
+        float: left;
+    }
+    .font {
+        width: auto;
+        height: 22px;
+        margin-left: 5px;
+        font-size: 16px;
+        font-weight: bold;
+        float: left;
+    }
+    .select {
+        float: right;
+        height: 30px;
+        margin-right: 10px;
+    }
+}
+
+.grid {
+    display: grid;
+    height: 100%;
+    padding: 0.1rem;
+    grid-template-columns: repeat(3, 1fr); /* 相当于 1fr 1fr 1fr */
+    grid-template-rows: repeat(3, 1fr); /* fr单位可以将容器分为几等份 */
+    grid-gap: 2%; /* grid-column-gap 和 grid-row-gap的简写 */
+    grid-auto-flow: row;
+}
+.grid > div {
+    color: #000;
+    text-align: center;
+    border-style: solid;
+    border-width: 0.01rem;
+    border-color: #dadbdb;
+}
+.p1 {
+    width: 100%;
+    margin-top: 0.2rem;
+    font-size: 0.14rem;
+}
+.p2 {
+    width: 100%;
+    font-size: 0.24rem;
+}

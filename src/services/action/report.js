@@ -1,0 +1,21 @@
+export default {
+    plan_list: {block_mapping: "report", action: "get_plan_list"},
+    report_plan_item: {block_mapping: "report", action: "get_plan_detail"},
+    run_plan: {block_mapping: "report", action: "run_plan"},
+    run_report_plan: {block_mapping: "report", action: "start_plan"},
+    stop_report_plan: {block_mapping: "report", action: "stop_plan"},
+    delete_report_plan: {block_mapping: "report", action: "delete_plan"},
+    add_report_plan: {block_mapping: "report", action: "add_plan"},
+    edit_report_plan: {block_mapping: "report", action: "edit_plan"},
+    report_result_list: {block_mapping: "report", action: "get_result_list"},
+    report_result_list_tableman: {block_mapping: "report", action: "get_result_list_tableman"},
+    report_upload: {block_mapping: "report", action: "upload_template"},
+    delete_report_task: {block_mapping: "report", action: "delete_task"},
+    delete_task_tableman: {block_mapping: "report", action: "delete_task_tableman"},
+    // 模板相关
+    get_template_list: {block_mapping: "report", action: "get_template_list"},
+    get_template_detail: {block_mapping: "report", action: "get_template_detail"},
+    add_template: {block_mapping: "report", action: "add_template"},
+    edit_template: {block_mapping: "report", action: "edit_template"},
+    delete_template: {block_mapping: "report", action: "delete_template"},
+}

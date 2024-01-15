@@ -1,0 +1,60 @@
+export default {
+    device_factory_list: {block_mapping: "device_manager", action: "get_factory_list"},
+    device_factory_item: {block_mapping: "device_manager", action: "get_factory"},
+    device_factory_create: {block_mapping: "device_manager", action: "create_factory"},
+    device_factory_update: {block_mapping: "device_manager", action: "update_factory"},
+    device_factory_delete: {block_mapping: "device_manager", action: "delete_factory"},
+
+    manufacturer_list: {block_mapping: "device_manager", action: "get_manufacturer_list"},
+    manufacturer_item: {block_mapping: "device_manager", action: "get_manufacturer"},
+    manufacturer_create: {block_mapping: "device_manager", action: "create_manufacturer"},
+    manufacturer_update: {block_mapping: "device_manager", action: "update_manufacturer"},
+    manufacturer_delete: {block_mapping: "device_manager", action: "delete_manufacturer"},
+
+    equipment_type_list: {block_mapping: "device_manager", action: "get_equipment_type_list"},
+    equipment_type_item: {block_mapping: "device_manager", action: "get_equipment_type"},
+    equipment_type_create: {block_mapping: "device_manager", action: "create_equipment_type"},
+    equipment_type_update: {block_mapping: "device_manager", action: "update_equipment_type"},
+    equipment_type_delete: {block_mapping: "device_manager", action: "delete_equipment_type"},
+
+    priority_list: {block_mapping: "device_manager", action: "get_priority_list"},
+    priority_item: {block_mapping: "device_manager", action: "get_priority"},
+    priority_create: {block_mapping: "device_manager", action: "create_priority"},
+    priority_update: {block_mapping: "device_manager", action: "update_priority"},
+    priority_delete: {block_mapping: "device_manager", action: "delete_priority"},
+
+    timer_rule_list: {block_mapping: "device_manager", action: "get_timer_rule_list"},
+    timer_rule_item: {block_mapping: "device_manager", action: "get_timer_rule"},
+    timer_rule_create: {block_mapping: "device_manager", action: "create_timer_rule"},
+    timer_rule_update: {block_mapping: "device_manager", action: "update_timer_rule"},
+    timer_rule_delete: {block_mapping: "device_manager", action: "delete_timer_rule"},
+
+    timer_rule_group_list: {block_mapping: "device_manager", action: "get_timer_rule_group_list"},
+    timer_rule_group_create: {block_mapping: "device_manager", action: "create_timer_rule_group"},
+    timer_rule_group_update: {block_mapping: "device_manager", action: "update_timer_rule_group"},
+    timer_rule_group_delete: {block_mapping: "device_manager", action: "delete_timer_rule_group"},
+    timer_rule_group_item: {block_mapping: "device_manager", action: "get_timer_rule_group_item"},
+
+    device_timer_list: {block_mapping: "device_manager", action: "get_timer_list"},
+    device_timer_item: {block_mapping: "device_manager", action: "get_timer"},
+    create_timer_device: {block_mapping: "device_manager", action: "create_timer"},
+    create_timers_device: {block_mapping: "device_manager", action: "create_timers"},
+    handle_timer_device: {block_mapping: "device_manager", action: "handle_timer"},
+    update_timer_device: {block_mapping: "device_manager", action: "update_timer"},
+    delete_timer_device: {block_mapping: "device_manager", action: "delete_timer"},
+    start_timer_device: {block_mapping: "device_manager", action: "start_timer"},
+    stop_timer_device: {block_mapping: "device_manager", action: "stop_timer"},
+    
+    device_equipment_list: {block_mapping: "device_manager", action: "get_equipment_list"},
+    device_equipment_item: {block_mapping: "device_manager", action: "get_equipment"},
+    device_equipment_delete: {block_mapping: "device_manager", action: "delete_equipment"},
+    device_equipment_create: {block_mapping: "device_manager", action: "create_equipment"},
+    device_equipment_update: {block_mapping: "device_manager", action: "update_equipment"},
+
+    get_threshold: {block_mapping: "device_manager", action: "get_threshold"},
+    set_threshold: {block_mapping: "device_manager", action: "set_threshold"},
+
+    handle_record_list: {block_mapping: "device_manager", action: "get_handle_record_list"},
+    handle_record_list_export: {block_mapping: "device_manager", action: "get_handle_record_list_export"},
+    verify_timer_record: {block_mapping: "device_manager", action: "verify_timer_record"},
+}

@@ -1,0 +1,402 @@
+/* 清除内外边距 */
+body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,
+/* structural elements 结构元素 */
+dl,dt,dd,ul,ol,li,div,
+/* list elements 列表元素 */
+pre,
+/* text formatting elements 文本格式元素 */
+fieldset,lengend,button,input,textarea,
+/* form elements 表单元素 */
+th,td {
+    /* table elements 表格元素 */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html,
+body,
+#app {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+/* 设置默认字体 */
+body,
+button,
+input,
+select,
+textarea {
+    font: 12px/1 Tahoma, Helvetica, Arial, '\5B8B\4F53', sans-serif;
+    font-family: 'Arial-BoldMT', 'MicrosoftYaHei';
+}
+h1 {
+    font-size: 18px;
+    /* 18px / 12px = 1.5 */
+}
+h2 {
+    font-size: 16px;
+}
+h3 {
+    font-size: 14px;
+}
+h4,
+h5,
+h6 {
+    font-size: 100%;
+}
+/* 将斜体扶正 */
+
+code,
+kbd,
+pre,
+samp,
+tt {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* 统一等宽字体 */
+small {
+    font-size: 12px;
+}
+
+/* 小于 12px 的中文很难阅读，让 small 正常化 */
+/* 重置列表元素 */
+ul,
+ol {
+    list-style: none;
+}
+/* 重置文本格式元素 */
+a {
+    text-decoration: none;
+}
+/*a:hover { text-decoration: underline; }*/
+abbr[title],
+acronym[title] {
+    /* 注：1.ie6 不支持 abbr; 2.这里用了属性选择符，ie6 下无效果 */
+    border-bottom: 1px dotted;
+    cursor: help;
+}
+
+q:before,
+q:after {
+    content: '';
+}
+/* 重置表单元素 */
+legend {
+    color: #000;
+}
+/* for ie6 */
+fieldset,
+img {
+    border: none;
+}
+/* img 搭车：让链接里的 img 无边框 */
+/* 注：optgroup 无法扶正 */
+button,
+input,
+select,
+textarea {
+    font-size: 100%;
+    /* 使得表单元素在 ie 下能继承字体大小 */
+}
+/* 重置表格元素 */
+table {
+    table-layout: fixed;
+    border-collapse: collapse;
+    width: 100%;
+    border-spacing: 0;
+}
+img {
+    display: inline-block;
+}
+/* 重置 hr */
+hr {
+    border: none;
+    height: 1px;
+}
+
+input::-webkit-input-placeholder {
+    color: #bbbbbb;
+}
+
+input::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: #bbbbbb;
+}
+
+input:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: #bbbbbb;
+}
+
+input:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: #bbbbbb;
+}
+
+/* tailwind.css覆盖了antdv样式，此处对svg单独做处理 */
+svg {
+    vertical-align: unset !important;
+}
+/*ios按钮的问题*/
+input[type='button'],
+input[type='submit'],
+input[type='file'],
+button {
+    cursor: pointer;
+}
+/* 常用颜色 */
+.primary {
+    color: #3580f2;
+    cursor: pointer;
+}
+
+.danger {
+    color: #ff2d55 !important;
+    cursor: pointer !important;
+}
+
+.warning {
+    color: #ff9c00;
+}
+
+.succsess {
+    color: #33c077;
+}
+
+.default {
+    color: #a1a2a3;
+}
+
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
+/* 全局滚动条样式修改 */
+::-webkit-scrollbar {
+    /*高宽分别对应横竖滚动条的尺寸*/
+    cursor: pointer;
+    width: 5px;
+    height: 8px; //x轴滚动条粗细
+}
+
+::-webkit-scrollbar-thumb {
+    /*滚动条里面小方块*/
+    border-radius: 5px;
+    background: #d9d9d9;
+}
+
+::-webkit-scrollbar-track {
+    /*滚动条里面轨道*/
+    border-radius: 10px;
+    background: transparent;
+}
+
+.image-content,
+.upload-box {
+    width: 80px;
+    height: 80px;
+    img {
+        width: 100%;
+        height: 100%;
+    }
+}
+.upload-box {
+    border: 1px solid #efefef;
+    border-radius: 4px;
+    margin-right: 8px;
+}
+.no-data {
+    width: 100%;
+    height: 100%;
+    background: url('@/assets/images/no-data.png') no-repeat center center;
+}
+.no-permissions {
+    width: 100%;
+    height: 100%;
+    background: url('@/assets/images/no-permissions.png') no-repeat center 42%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    span {
+        margin-top: 60px;
+        color: #8c8c8c;
+    }
+}
+.none-data {
+    width: 100%;
+    height: 100%;
+    background: url('@/assets/images/no-text.svg') no-repeat center center;
+}
+.none-addition {
+    width: 100%;
+    height: 120px;
+    background: url('@/assets/images/no-text.svg') no-repeat center center;
+    background-size: 64px auto;
+}
+.tr-checked {
+    background: #efefef;
+}
+
+.desc-img {
+    max-width: 60px;
+    max-height: 48px;
+    width: auto;
+    height: auto;
+}
+.mix-required {
+    position: relative;
+    &::before {
+        display: inline-block;
+        margin-right: 4px;
+        color: #f24130;
+        font-size: 14px;
+        font-family: SimSun, sans-serif;
+        line-height: 1;
+        content: '*';
+    }
+}
+
+.mix-loading {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 99999;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.mix-content {
+    padding: $content_main_padding;
+    position: relative;
+}
+.mix-search {
+    padding-bottom: 12px;
+    position: relative;
+    overflow-x: auto;
+
+    .search-item {
+        padding-right: 12px;
+    }
+
+    .range-item {
+        padding-right: 12px;
+    }
+
+    .label-option {
+        width: 150px;
+    }
+
+    .search-value {
+        width: 200px;
+    }
+
+    .condition-option {
+        width: 110px;
+    }
+
+    .toggle-wrap {
+        position: absolute;
+        border-radius: 4px;
+        right: 0;
+        height: calc(100% - 8px);
+        top: 0;
+
+        .item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #efefef;
+            padding: 0 12px;
+
+            &:first-child {
+                border-top-left-radius: 4px;
+                border-bottom-left-radius: 4px;
+            }
+
+            &:last-child {
+                border-top-right-radius: 4px;
+                border-bottom-right-radius: 4px;
+            }
+        }
+
+        .checked {
+            background: #40a9ff;
+            border-color: #40a9ff;
+            color: #fff;
+        }
+    }
+}
+
+.mix-search::-webkit-scrollbar {
+    height: 0px;
+}
+
+.mix-search:hover::-webkit-scrollbar {
+    height: 6px;
+}
+
+.mix-detail-container {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .mix-detail-block {
+        padding: 12px;
+        background: #fff;
+        overflow: auto;
+        .head-img {
+            width: auto;
+            height: auto;
+            max-height: 80px;
+            max-width: 64px;
+        }
+    }
+
+    .script-flex {
+        flex: 1;
+        display: flex;
+    }
+
+    .mix-script-block {
+        flex: 1;
+        border-radius: 2px;
+        overflow: hidden;
+        .mix-script-body {
+            background-color: #fafafa;
+            border: 1px solid #ccc;
+            padding: 10px;
+            min-width: calc(100% - 22px);
+            height: 100%;
+            overflow: auto;
+            color: #666;
+        }
+    }
+}
+
+.mix-detail-title {
+    background: #fff;
+    margin-top: 12px;
+    height: 54px;
+    line-height: 54px;
+    padding: 0 16px;
+    font-size: 16px;
+    font-weight: bolder;
+    border-bottom: 1px solid #e5e5e5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &:first-child {
+        margin-top: 0;
+    }
+}
