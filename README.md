@@ -1,6 +1,6 @@
 ### 应用说明
 
-​	项目是以智物联apiproxy为基础，搭建的应用模版。包含了如显示版、对象管理、维保、报表等业务。
+​	项目是以智物联apiproxy为基础，搭建的应用模板。包含了如显示版、对象管理、维保、报表等业务。
 
 ### 配置项
 
@@ -8,9 +8,9 @@
 
 - app_id：apiproxy的id
 - app_secret：apiproxy的密钥
-- home_pro：显示版管理应用下，配置好的显示版信息。
-  - uid：显示版的id
-  - object_id：显示版关联的对象id
+- home_pro：显示板管理应用下，配置好的显示板信息。
+  - uid：显示板的id
+  - object_id：显示板关联的对象id
 
 app_id与app_secret用于获取调apiproxy接口需要的access_token
 
@@ -37,7 +37,7 @@ import 'mixlinker-tools/style'
 app.use(mixlinker)
 ```
 
-如显示板组件mix-dashboard,传入显示版管理应用下的显示版id，即可以显示出显示版。
+如显示板组件mix-dashboard,传入显示板管理应用下的显示版id，即可以显示出显示板。
 
 ```html
  <mix-dashboard :params="{uid:'mixdashboardid123'}"></mix-dashboard>
