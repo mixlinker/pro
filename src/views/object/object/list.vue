@@ -1,20 +1,13 @@
 <template>
-    <div class="mix-content" v-if="authStatus">
+    <div class="mix-content">
         <div class="flex">
-            <mix-top-operation
-                ref="mix_top_operation"
-                @search="search"
-                @reload="reload"
-                :searchField="search_field"
-                :condition_field="search_field"
-            />
-            <mix-auth-button :command-buttons="commandButtons"></mix-auth-button>
+            <mix-top-operation ref="mix_top_operation" @search="search" @reload="reload" :searchField="base_search_field" />
         </div>
         <mix-agrid
-            v-model:columnDefs="columns"
-            :rowData="dataSource"
+            v-model:columnDefs="baseColumns"
+            v-model:rowData="dataSource"
             ref="ag_grid"
-            :columWithStorageName="`object_object_list_${activeKey}`"
+            columWithStorageName="object_object_list"
             :pager="pager"
             @pageChange="pageChange"
             @cellContextMenu="onCellContextMenu"
@@ -24,19 +17,14 @@
         <modal ref="edit_modal"></modal>
         <tpl-modal ref="tpl_modal"></tpl-modal>
     </div>
-    <div v-else class="no-permissions">
-        <span>{{ $t('no_permissions') }}</span>
-    </div>
 </template>
 
 <script setup>
-import { getCurrentInstance, computed, reactive, ref, onMounted } from 'vue'
-import { usePermissionStore } from '@/pinia/modules/menu'
+import { getCurrentInstance, reactive, ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { useFormatScript, useInitParams } from '@/hook/analy_script.js'
+import { useInitParams } from '@/hook/analy_script.js'
 import modal from './component/modal.vue'
 import tplModal from './component/tpl-modal.vue'
-import script from './script'
 const props = defineProps({
     permission: {
         type: Object,
@@ -52,10 +40,6 @@ const edit_modal = ref(null)
 const { proxy } = getCurrentInstance()
 const mix_top_operation = ref()
 const pager = reactive({ ...proxy.config.pagination })
-/* 获取当前视图权限 */
-const activeKey = computed(() => usePermissionStore().activeKey)
-
-/* 获取工具栏按钮，操作栏按钮，列表显示字段 */
 const base_search_field = [
     {
         value: 'name',
@@ -140,19 +124,19 @@ const baseColumns = [
     { field: 'created', headerName: proxy.$t('created'), width: 200 },
     { field: 'last_modified', headerName: proxy.$t('last_modified'), width: 200 }
 ]
-
-const { commandButtons, localButtons, title_field, condition, columns, search_field, authStatus } = useFormatScript(
-    script,
-    baseColumns,
-    base_search_field
-)
+const localButtons = [
+    {
+        type: 'item',
+        role_checked: true
+    }
+]
 const order = {
     order_by: 'id',
     order_type: 'desc'
 }
 const dataSource = ref([])
 const getList = (param) => {
-    let data = useInitParams(pager, mix_top_operation, condition, order)
+    let data = useInitParams(pager, mix_top_operation, null, order)
     data.need_mosaic = true
     let hideLoading = param === 'interval'
     proxy.api.post('object_list', data, hideLoading).then((res) => {
@@ -210,7 +194,7 @@ const detail = (record) => {
     router.push({
         path: '/object/object/detail/' + record.uid,
         query: {
-            active_name: record[title_field.value] + `(${record.uid})`
+            active_name: record.name + `(${record.uid})`
         }
     })
 }

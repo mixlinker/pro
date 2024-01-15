@@ -14,31 +14,37 @@
                 <a-descriptions-item :label="$t('created')" :span="1">
                     {{ object.created }}
                 </a-descriptions-item>
-                <a-descriptions-item :label="$t('timer.task.cycle_type')" v-if="cycleTypeList" :span="1">
-                    {{ cycleTypeList[object.cycle_type] || $t('timer.task.unknown_type') }}
-                </a-descriptions-item>
-                <a-descriptions-item :label="$t('timer.task.statistics_id')" :span="1">
-                    {{ object.statistics_id }}
-                </a-descriptions-item>
-                <a-descriptions-item :span="2" :label="$t('last_modified')">
+                <a-descriptions-item :span="1" :label="$t('last_modified')">
                     {{ object.last_modified }}
-                </a-descriptions-item>
-                <a-descriptions-item :label="$t('timer.task.notice')" :span="1">
-                    {{ object.notice }}
-                </a-descriptions-item>
-                <a-descriptions-item :label="$t('timer.task.period')" :span="1">
-                    {{ object.period }}
                 </a-descriptions-item>
                 <a-descriptions-item :label="$t('timer.task.first_handle_time')" :span="1">
                     {{ object.first_handle_time }}
                 </a-descriptions-item>
-                <a-descriptions-item :span="3" :label="$t('timer.task.object_id')">
+                <a-descriptions-item :span="1" :label="$t('timer.task.object_id')">
                     {{ object.object_id }}
                 </a-descriptions-item>
                 <a-descriptions-item :span="3" :label="$t('description')">
                     {{ object.description }}
                 </a-descriptions-item>
             </a-descriptions>
+        </div>
+        <div class="mix-detail-title">
+            <div>{{ $t('timer.task.conditions') }}</div>
+        </div>
+        <div class="mix-detail-block">
+            <a-table :columns="columnsRule" :data-source="object.conditions" bordered="" :pagination="false">
+                <template #bodyCell="{ column, record }">
+                    <template v-if="column.key === 'cycle_type'">
+                        {{ cycleTypeList[record.cycle_type] }}
+                    </template>
+                    <template v-if="column.key === 'period_num'">
+                        {{ record.period_num + record.period_unit }}
+                    </template>
+                    <template v-if="column.key === 'notice_num'">
+                        {{ record.notice_num + record.notice_unit }}
+                    </template>
+                </template>
+            </a-table>
         </div>
     </div>
 </template>
@@ -47,13 +53,18 @@
 import { getCurrentInstance } from 'vue'
 
 const { proxy } = getCurrentInstance()
-const props = defineProps(['object', 'getItem'])
+const props = defineProps(['object'])
 
 const cycleTypeList = {
     NaturalTime: proxy.$t('timer.rule.NaturalTime'),
     RunTime: proxy.$t('timer.rule.RunTime'),
-    Times: proxy.$t('timer.task.Times')
+    StatisticsTimes: proxy.$t('timer.rule.StatisticsTimes')
 }
+const columnsRule = [
+    { title: '维保类型', key: 'cycle_type', dataIndex: 'cycle_type' },
+    { title: '维保周期', key: 'period_num', dataIndex: 'period_num' },
+    { title: '提醒周期', key: 'notice_num', dataIndex: 'period_num' }
+]
 </script>
 
 <style lang="scss" scoped>

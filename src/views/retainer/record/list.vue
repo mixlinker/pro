@@ -1,5 +1,5 @@
 <template>
-    <div class="mix-content" v-if="authStatus">
+    <div class="mix-content">
         <div class="flex">
             <div class="search-item mr-[10px]">
                 <a-radio-group v-model:value="retainerStatus" style="width: 192px" @change="getList" button-style="solid">
@@ -13,17 +13,16 @@
             </div>
             <mix-top-operation
                 ref="mix_top_operation"
-                @search="search"
                 :initOneDateTime="true"
                 :show-range="true"
+                :searchField="base_search_field"
+                @search="search"
                 @reload="reload"
-                :searchField="search_field"
             />
-            <mix-auth-button :command-buttons="commandButtons"></mix-auth-button>
         </div>
         <mix-agrid
-            v-model:columnDefs="columns"
-            :rowData="dataSource"
+            v-model:columnDefs="baseColumns"
+            v-model:rowData="dataSource"
             ref="ag_grid"
             :field_filter="true"
             :columWithStorageName="`retainer_record`"
@@ -35,17 +34,13 @@
         <mix-right-menu ref="rightMenu" :localButtons="localButtons" />
         <exportModal ref="export_modal"></exportModal>
     </div>
-    <div v-else class="no-permissions">
-        <span>{{ $t('no_permissions') }}</span>
-    </div>
 </template>
 
 <script setup>
 import { ref, getCurrentInstance, reactive, onMounted, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
-import { useFormatScript, useInitParams } from '@/hook/analy_script.js'
+import { useInitParams } from '@/hook/analy_script.js'
 import exportModal from './component/export-modal.vue'
-import script from './script'
 const router = useRouter()
 const { proxy } = getCurrentInstance()
 const pager = reactive({ ...proxy.config.pagination })
@@ -160,19 +155,20 @@ let baseColumns = [
         width: 180
     }
 ]
-const { commandButtons, localButtons, title_field, condition, columns, search_field, authStatus } = useFormatScript(
-    script,
-    baseColumns,
-    base_search_field
-)
 const order = {
     order_by: 'id',
     order_type: 'desc'
 }
+const localButtons = [
+    {
+        type: 'item',
+        checked: true
+    }
+]
 const retainerStatus = ref('1')
 const dataSource = ref([])
 const getList = () => {
-    let data = useInitParams(pager, mix_top_operation, condition, order)
+    let data = useInitParams(pager, mix_top_operation, null, order)
     if (data.where_and && data.where_and.length) {
         let conditions = JSON.parse(data.where_and)
         conditions.push(['retained', '=', retainerStatus.value])

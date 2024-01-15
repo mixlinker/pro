@@ -1,21 +1,14 @@
 <template>
-    <div class="mix-content" v-if="authStatus">
+    <div class="mix-content">
         <div class="flex">
-            <mix-top-operation
-                ref="mix_top_operation"
-                @search="search"
-                @reload="reload"
-                :searchField="search_field"
-                :condition_field="search_field"
-            />
-            <mix-auth-button :command-buttons="commandButtons"></mix-auth-button>
+            <mix-top-operation ref="mix_top_operation" @search="search" @reload="reload" :searchField="base_search_field" />
         </div>
         <mix-agrid
             v-model:columnDefs="baseColumns"
             :rowData="dataSource"
             ref="ag_grid"
             :field_filter="true"
-            :columWithStorageName="`customer_customer_list_${activeKey}`"
+            columWithStorageName="customer_customer_lis`"
             :pager="pager"
             @pageChange="pageChange"
             @cellContextMenu="onCellContextMenu"
@@ -25,19 +18,14 @@
         <modal ref="edit_modal"></modal>
         <export-modal ref="export_modal"></export-modal>
     </div>
-    <div v-else class="no-permissions">
-        <span>{{ $t('no_permissions') }}</span>
-    </div>
 </template>
 
 <script setup>
 import { getCurrentInstance, computed, reactive, ref, onMounted } from 'vue'
-import { usePermissionStore } from '@/pinia/modules/menu'
 import { useRouter } from 'vue-router'
-import { useFormatScript, useInitParams } from '@/hook/analy_script.js'
+import { useInitParams } from '@/hook/analy_script.js'
 import modal from './component/modal.vue'
 import exportModal from './component/export_modal.vue'
-import script from './script'
 const router = new useRouter()
 const props = defineProps({
     permission: {
@@ -54,7 +42,6 @@ const export_modal = ref(null)
 const { proxy } = getCurrentInstance()
 const mix_top_operation = ref()
 const pager = reactive({ ...proxy.config.pagination })
-const activeKey = computed(() => usePermissionStore().activeKey)
 const base_search_field = [
     {
         value: 'name',
@@ -115,15 +102,19 @@ const baseColumns = ref([
     { field: 'city', headerName: proxy.$t('customer.city'), width: 180 },
     { field: 'created', headerName: proxy.$t('created'), width: 200 }
 ])
-
-const { commandButtons, localButtons, title_field, condition, search_field, authStatus } = useFormatScript(script, [], base_search_field)
 const order = {
     order_by: 'id',
     order_type: 'desc'
 }
+const localButtons = [
+    {
+        type: 'item',
+        role_checked: true
+    }
+]
 const dataSource = ref([])
 const getList = () => {
-    let data = useInitParams(pager, mix_top_operation, condition, order)
+    let data = useInitParams(pager, mix_top_operation, null, order)
     proxy.api.post('customer_list', data).then((res) => {
         dataSource.value = res.result.data
         pager.total = res.result.total_records
@@ -172,7 +163,7 @@ const detail = (record) => {
     router.push({
         path: '/customer/customer/detail/' + record.uid,
         query: {
-            active_name: record[title_field.value] + `(${record.uid})`
+            active_name: record.name + `(${record.uid})`
         }
     })
 }

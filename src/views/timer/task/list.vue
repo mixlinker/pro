@@ -1,11 +1,10 @@
 <template>
-    <div v-if="authStatus" class="mix-content">
+    <div class="mix-content">
         <div class="flex relative">
-            <mix-top-operation ref="mix_top_operation" @search="search" @reload="reload" :searchField="search_field" />
-            <mix-auth-button :command-buttons="commandButtons"></mix-auth-button>
+            <mix-top-operation ref="mix_top_operation" @search="search" @reload="reload" :searchField="base_search_field" />
         </div>
         <mix-agrid
-            v-model:columnDefs="columns"
+            v-model:columnDefs="baseColumns"
             v-model:rowData="dataSource"
             ref="ag_grid"
             :columWithStorageName="`timer_task_list_${activeKey}`"
@@ -18,19 +17,15 @@
         <modal ref="modalRef"></modal>
         <timerHandleModal ref="timerHandleModalRef"></timerHandleModal>
     </div>
-    <div v-else class="no-permissions">
-        <span>{{ $t('no_permissions') }}</span>
-    </div>
 </template>
 
 <script setup>
-import { getCurrentInstance, nextTick, computed, reactive, ref, onMounted, watch } from 'vue'
+import { getCurrentInstance, computed, reactive, ref, onMounted } from 'vue'
 import { usePermissionStore } from '@/pinia/modules/menu'
 import { useRouter } from 'vue-router'
-import { useFormatScript, useInitParams } from '@/hook/analy_script.js'
+import { useInitParams } from '@/hook/analy_script.js'
 import modal from './modal.vue'
 import timerHandleModal from './timerHandleModal.vue'
-import script from './script'
 
 const { proxy } = getCurrentInstance()
 const mix_top_operation = ref(null)
@@ -127,16 +122,17 @@ const baseColumns = [
     }
 ]
 const dataSource = ref([])
-const { commandButtons, title_field, condition, columns, localButtons, search_field, authStatus } = useFormatScript(
-    script,
-    baseColumns,
-    base_search_field
-)
+const localButtons = [
+    {
+        type: 'item',
+        role_checked: true
+    }
+]
 onMounted(() => {
     getList()
 })
 const getList = () => {
-    let data = useInitParams(pager, mix_top_operation, condition, null)
+    let data = useInitParams(pager, mix_top_operation)
     proxy.api.post('get_timer_list', data).then((res) => {
         let tmp_data = res.result.data
         pager.total = res.result.total_records
@@ -173,7 +169,7 @@ const detail = (record) => {
     router.push({
         path: '/timer/task/detail/' + record.uid,
         query: {
-            active_name: record[title_field.value] + `(${record.uid})`
+            active_name: record.name + `(${record.uid})`
         }
     })
 }

@@ -1,14 +1,19 @@
 <template>
-    <div v-if="authStatus" class="mix-content">
+    <div class="mix-content">
         <div class="flex relative">
-            <mix-top-operation ref="mix_top_operation" @search="search" @reload="reload" :searchField="search_field" :showRange="true" />
-            <mix-auth-button :command-buttons="commandButtons"></mix-auth-button>
+            <mix-top-operation
+                ref="mix_top_operation"
+                @search="search"
+                @reload="reload"
+                :searchField="base_search_field"
+                :showRange="true"
+            />
         </div>
         <mix-agrid
-            v-model:columnDefs="columns"
+            v-model:columnDefs="baseColumns"
             v-model:rowData="dataSource"
             ref="ag_grid"
-            :columWithStorageName="`report_result_list_${activeKey}`"
+            :columWithStorageName="`report_result_list`"
             :pager="pager"
             @pageChange="pageChange"
             @cellContextMenu="onCellContextMenu"
@@ -16,16 +21,12 @@
         />
         <mix-right-menu ref="rightMenu" :localButtons="localButtons" />
     </div>
-    <div v-else class="no-permissions">
-        <span>{{ $t('no_permissions') }}</span>
-    </div>
 </template>
 
 <script setup>
-import { getCurrentInstance, computed, reactive, ref, onMounted, watch } from 'vue'
+import { getCurrentInstance, computed, reactive, ref, onMounted } from 'vue'
 import { usePermissionStore } from '@/pinia/modules/menu'
-import { useFormatScript, useInitParams } from '@/hook/analy_script.js'
-import script from './script'
+import { useInitParams } from '@/hook/analy_script.js'
 const { proxy } = getCurrentInstance()
 const props = defineProps({
     permission: {
@@ -33,11 +34,13 @@ const props = defineProps({
         default: null
     }
 })
+onMounted(() => {
+    getList()
+})
 const mix_top_operation = ref(null)
 const ag_grid = ref(null)
 const rightMenu = ref(null)
 const pager = reactive({ ...proxy.config.pagination })
-const activeKey = computed(() => usePermissionStore().activeKey)
 const reportType_map = {
     1: proxy.$t('report.project.year_report'),
     2: proxy.$t('report.project.month_report'),
@@ -101,17 +104,22 @@ const baseColumns = [
     }
 ]
 const dataSource = ref([])
-const { commandButtons, condition, columns, localButtons, search_field, authStatus } = useFormatScript(
-    script,
-    baseColumns,
-    base_search_field
-)
+const localButtons = [
+    {
+        type: 'download',
+        role_checked: true
+    },
+    {
+        type: 'preview',
+        role_checked: true
+    }
+]
 const order = {
     order_by: 'id',
     order_type: 'desc'
 }
 const getList = () => {
-    let data = useInitParams(pager, mix_top_operation, condition, order)
+    let data = useInitParams(pager, mix_top_operation, null, order)
     data.block_id = 'index'
     proxy.api.post('report_result_list', data).then((res) => {
         dataSource.value = res.result.data

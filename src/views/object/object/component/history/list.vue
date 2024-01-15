@@ -182,9 +182,6 @@ const getrecordData = () => {
             dataSource.value = res.result.data ?? []
             pager.total = res.result.total_records
             fv_modal.value.modal.show = false
-            nextTick(() => {
-                ag_grid.value.initColWithAndsite()
-            })
         } else {
             pager.total = 0
             pager.current = 1

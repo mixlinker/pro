@@ -95,7 +95,7 @@ export const useFormatFV = (str) => {
     }
 }
 
-export const useInitParams = (pager, mix_top_operation, condition, order) => {
+export const useInitParams = (pager, mix_top_operation, condition = null, order = null) => {
     let data = {
         where_and: [],
         page_size: pager.pageSize,
@@ -117,10 +117,10 @@ export const useInitParams = (pager, mix_top_operation, condition, order) => {
         data.where_and.push(['created', '>=', search.searchRangeTime[0]]);
         data.where_and.push(['created', '<=', search.searchRangeTime[1]]);
     }
-    if (condition.value.where_and && condition.value.where_and.length) {
+    if (condition && condition.value.where_and && condition.value.where_and.length) {
         data.where_and = [...data.where_and, ...condition.value.where_and]
     }
-    if (condition.value.where_or && condition.value.where_or.length) {
+    if (condition && condition.value.where_or && condition.value.where_or.length) {
         data.where_or = [...data.where_or, ...condition.value.where_or]
     }
     let { opt, conditions } = search.condition

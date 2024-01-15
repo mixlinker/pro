@@ -194,9 +194,6 @@ const getList = () => {
         condition.push(['created', '<=', endTime])
     }
     data.where_and = JSON.stringify(condition)
-    nextTick(() => {
-        ag_grid.value.initColWithAndsite()
-    })
     proxy.api.post('retainer_result_list', data).then((res) => {
         if (res.code === 200) {
             pager.current = parseInt(res.result.page_index)

@@ -94,12 +94,13 @@ export default {
         RunTime: "运行时间",
         Times: "使用次数",
         add_handle_record: "添加处理记录",
-        edit_handle_record:"编辑处理记录",
+        edit_handle_record: "编辑处理记录",
         handle_time: "处理时间",
         fee: "维保费用",
         picture: "现场图片",
         handle_uid: "处理编号",
-        start_time: "开始时间"
+        start_time: "开始时间",
+        conditions: '维保条件'
     },
     group: {
         uid: "规则组编号",

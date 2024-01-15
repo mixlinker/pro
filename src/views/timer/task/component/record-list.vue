@@ -43,28 +43,34 @@ const base_search_field = [
 const columns = ref([
     {
         field: 'uid',
-        headerName: proxy.$t('timer.task.handle_uid')
+        headerName: proxy.$t('timer.task.handle_uid'),
+        flex: 1
     },
     {
         field: 'handler_name',
-        headerName: proxy.$t('timer.task.handle_id')
+        headerName: proxy.$t('timer.task.handle_id'),
+        flex: 1
     },
     {
         field: 'description',
-        headerName: proxy.$t('description')
+        headerName: proxy.$t('description'),
+        flex: 1
     },
     {
         field: 'fee',
-        headerName: proxy.$t('timer.task.fee')
+        headerName: proxy.$t('timer.task.fee'),
+        flex: 1
     },
     {
         field: 'images',
         headerName: proxy.$t('timer.task.picture'),
-        cellRenderer: 'ag-image'
+        cellRenderer: 'ag-image',
+        flex: 1
     },
     {
         field: 'created',
-        headerName: proxy.$t('created')
+        headerName: proxy.$t('created'),
+        flex: 1
     }
 ])
 onMounted(() => {
