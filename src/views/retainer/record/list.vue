@@ -29,7 +29,6 @@
             :pager="pager"
             @pageChange="pageChange"
             @cellContextMenu="onCellContextMenu"
-            @sortChanged="sortChange"
         />
         <mix-right-menu ref="rightMenu" :localButtons="localButtons" />
         <exportModal ref="export_modal"></exportModal>
@@ -43,6 +42,10 @@ import { useInitParams } from '@/hook/analy_script.js'
 import exportModal from './component/export-modal.vue'
 const router = useRouter()
 const { proxy } = getCurrentInstance()
+
+onMounted(() => {
+    getList()
+})
 const pager = reactive({ ...proxy.config.pagination })
 const mix_top_operation = ref()
 const ag_grid = ref()
@@ -155,10 +158,6 @@ let baseColumns = [
         width: 180
     }
 ]
-const order = {
-    order_by: 'id',
-    order_type: 'desc'
-}
 const localButtons = [
     {
         type: 'item',
@@ -168,7 +167,7 @@ const localButtons = [
 const retainerStatus = ref('1')
 const dataSource = ref([])
 const getList = () => {
-    let data = useInitParams(pager, mix_top_operation, null, order)
+    let data = useInitParams(pager, mix_top_operation)
     if (data.where_and && data.where_and.length) {
         let conditions = JSON.parse(data.where_and)
         conditions.push(['retained', '=', retainerStatus.value])
@@ -185,16 +184,6 @@ const getList = () => {
 const rightMenu = ref()
 const onCellContextMenu = (params) => {
     rightMenu.value.showRightMenu(params.event, params.data)
-}
-const sortChange = (event) => {
-    const columData = event.columnApi.getColumnState().find((item) => item.sort != null)
-    if (columData?.colId) {
-        order.order_by = columData?.colId
-    }
-    if (columData?.sort) {
-        order.order_type = columData.sort
-    }
-    getList()
 }
 const search = () => {
     getList()

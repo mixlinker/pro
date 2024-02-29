@@ -29,7 +29,6 @@ export default {
     },
 
     retainer_result_list: {
-        block_mapping: "retainer",
         action: "get_retainer_result_list_v2"
     },
     retainer_result_item: {

@@ -112,7 +112,7 @@ export const basicRouter = [
         meta: {
             icon: 'branches-outlined',
             title: '历程记录',
-            showMenu: false
+            showMenu: true
         }
     },
     {
