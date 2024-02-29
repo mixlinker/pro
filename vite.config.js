@@ -3,6 +3,7 @@ import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
+import publicConfig from './src/config/public.js'
 
 export default defineConfig({
   plugins: [
@@ -29,12 +30,12 @@ export default defineConfig({
     port: 8082,
     proxy: {
       '/apiproxy': {
-        target: 'https://v8.mixyun.top:4433/apiproxy',
+        target: publicConfig.proxy_url + '/apiproxy',
         changeOrigin: true,
         rewrite: (path) => path.replace('/apiproxy', ''),
       },
       '/mixservice': {
-        target: 'http://v8.mixyun.top:4433/mixservice',
+        target: publicConfig.proxy_url + '/mixservice',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/mixservice/, ''),
       },

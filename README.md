@@ -14,6 +14,7 @@
 
 - app_id：智物联的Mixiot平台下，API管理模块里app_id
 - app_secret：智物联的Mixiot平台下，API管理模块里的密钥
+- proxy_url：智物联的Mixiot平台地址
 - home_pro：显示版管理应用下，配置好的显示版信息。
   - uid：显示版的id
   - object_id：显示版关联的对象id

@@ -1,8 +1,9 @@
 export default {
-    app_id: "SGN3281087100002",
-    app_secret: "3d9b0c99-3ce2-0482-c912-2cc73994bbcb",
+    app_id: "SGN3221654000001",
+    app_secret: "13c09a6d-522e-c78f-1fb3-f7c3f7f626d7",
+    proxy_url:'https://industry.mixyun.com/',
     home_pro: {
-        uid: 'DSH38311093701067',
-        object_id: 'yjj'
+        uid: 'DSH4150348801548',
+        object_id: 'OBJ4150345601545'
     }
 }

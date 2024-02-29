@@ -1,7 +1,8 @@
 export default {
     object_list: {
         block_mapping: "object",
-        action: "get_object_list"
+        action: "get_object_list",
+        block_mapping_active: true
     },
     object_item: {
         block_mapping: "object",

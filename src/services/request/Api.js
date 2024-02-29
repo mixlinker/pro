@@ -8,7 +8,10 @@ import { useSystemStore } from '@/pinia/modules/system'
 export default {
     post(block, params = {}, loading, configs) {
         return new Promise((resolve, reject) => {
-            // params.block_mapping = action_mapping[block].block_mapping;
+            if (action_mapping[block].block_mapping_active) {
+                params.block_mapping = action_mapping[block].block_mapping;
+
+            }
             params.action = action_mapping[block].action;
             useSystemStore().setLoading(!loading)
             BaseApi.post(config.api_proxy_url, params, {

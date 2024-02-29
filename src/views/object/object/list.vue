@@ -140,8 +140,8 @@ const getList = (param) => {
     data.need_mosaic = true
     let hideLoading = param === 'interval'
     proxy.api.post('object_list', data, hideLoading).then((res) => {
-        pager.total = res.result.length
-        dataSource.value = res.result
+        pager.total = res.result.total_records
+        dataSource.value = res.result.data
     })
 }
 const pageChange = (current, size) => {
